@@ -3,6 +3,7 @@ from spy_status import add_status
 from spy_friend import add_friend,select_friend
 from spy_message import send_message,read_message
 from old_spy_message import read_old_mess
+from termcolor import colored
 
 
 def spy_chat(name,age,rating,online_status):
@@ -18,7 +19,7 @@ def spy_chat(name,age,rating,online_status):
             print "Update your Status"
             current_status_message = "None"
             current_status_message = add_status(current_status_message)
-            print ("\n--Your current_status_message is--\n%s"%(current_status_message))
+            print ("\n--Your current_status_message is--\n")+colored("%s"%(current_status_message),'green')
         elif menu_choice == 2:
             add_friend(rating)
         elif menu_choice == 3:
@@ -33,38 +34,52 @@ def spy_chat(name,age,rating,online_status):
         elif menu_choice == 7:
             show_menu = False
         else:
-            print "Enter correct Choice"
+            print colored("Enter correct Choice",'red')
 
 
 #Begining of our spy_application
+warn = 0
 #Enter choice whether you want to continue as a Default user or create new User
-choice = int(raw_input("Press\n 1. to continue as default user or \n 2. to create new user\n"))
-if choice == 1:
-    spy_chat(spy_information['Name'],spy_information['Age'],spy_information['Rating'],spy_information['online_status'])
-else:
-    name = raw_input("Welcome to spy chat, you must tell me your spy name first: \t")
-    if len(name) == 0:
+while True:
+    choice = int(raw_input("Press\n 1. to continue as default user or \n 2. to create new user\n"))
+    if choice == 1:
+        spy_chat(spy_information['Name'],spy_information['Age'],spy_information['Rating'],spy_information['online_status'])
+        break
+    elif choice == 2:
+        name = raw_input("Welcome to spy chat, you must tell me your spy name first: \t")
+        if len(name) == 0:
 #keep executing the loop until Spy enters his name
-        while True:
-            print "WARNING: Please enter your name to continue:"
-            name = raw_input("Welcome to spy chat, you must tell me your spy name first: \t")
-            if len(name) != 0:
-                break
-            else:
-                pass
+            while True:
+                print colored("WARNING: Please enter your name to continue:",'red')
+                name = raw_input("Welcome to spy chat, you must tell me your spy name first: \t")
+                if len(name) != 0:
+                    break
+                else:
+                    pass
 
-    if len(name) != 0:
-        Salutation = raw_input("Should I call you Mr. or Mrs. ? :\t")
-        age = int(raw_input("What is your age? : "))
+        if len(name) != 0:
+            Salutation = raw_input("Should I call you Mr. or Mrs. ? :\t")
+            age = int(raw_input("What is your age? : "))
 
-        if 50>age>12:
+            if 50>age>12:
 
-            print ("%s %s please enter"%(Salutation,name))
-            rate = float(raw_input("1.your Spy ratings :\t"))
-            online_status = bool(raw_input("2.your online_status(True/False) :\t"))
+                print ("%s %s please enter"%(Salutation,name))
+                rate = float(raw_input("1.your Spy ratings :\t"))
+                online_status = bool(raw_input("2.your online_status(True/False) :\t"))
 
 #Display Spy Details of new User
-            spy_chat(name,age,rate,online_status)
+                spy_chat(name,age,rate,online_status)
+            else:
+                print colored("Sorry you are not appropriate to be a spy",'green')
+        break
+    else:
+        if warn == 0:
+            print  colored("Invalid Input",'red')
+            warn += 1
+            pass
+        elif warn == 1:
+            print colored("\nDon't try to be clever.I am more smarter then you",'yellow'),colored("LAST CHANCE",'red')
+            warn += 1
+            pass
         else:
-            print "Sorry you are not appropriate to be a spy"
-
+            break

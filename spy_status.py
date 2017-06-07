@@ -1,4 +1,5 @@
 from spy_details import status_messages
+from termcolor import colored
 
 #Adding/Updating spy's status:
 def add_status(current_status_message):
@@ -12,26 +13,32 @@ def add_status(current_status_message):
                     status_messages.append(update_status_message)
                     break
                 else:
+                    print colored("No status message received",'red')
                     pass
-        if default.upper() == 'Y':
+
+        elif default.upper() == 'Y':
             print "Previous Status messages are "
-            item_position = 1
+            item_position = 0
             for status in status_messages:
-                print ("%d.%s"%(item_position,status))
                 item_position = item_position + 1
+                print ("%d.%s"%(item_position,status))
+
             while True:
                 message_selection = int(raw_input("Which status message do you want to set ?"))-1
-                if len(status_messages) >= message_selection:
+                if 0 <= message_selection < item_position:
                     update_status_message = status_messages[message_selection]
                     status_messages.append(update_status_message)
                     status_messages.pop(message_selection)
                     break
                 else:
-                    print "Enter the correct choice from the given choice"
+                    print colored("Enter the correct choice from the given choices",'red')
+
+        else:
+            print colored("INVALID INPUT",'red')
+            update_status_message = colored("STATUS NOT UPDATED",'red')
 
         return update_status_message
 
     else:
         print ("Your current_status_message is %s"%(current_status_message))
-
 

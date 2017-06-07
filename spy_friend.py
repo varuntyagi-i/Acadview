@@ -1,4 +1,5 @@
 from spy_details import friends
+from termcolor import colored
 
 #Adding spy's friend to friend's List
 def add_friend(rating):
@@ -27,6 +28,9 @@ def add_friend(rating):
             break
         elif choice.upper()=='Y':
             pass
+        else:
+            print colored("INVALID INPUT",'red')
+            break
 
 
 #Displaying information of spy's friend
@@ -36,11 +40,17 @@ def select_friend():
     for friend in friends:
         count += 1
         print ("%d.%s"%(count,friend['Name']))
-    friend_index = int(raw_input())-1
-    if friends[friend_index] in friends:
-        print ("\nName:%s\nAge:%d\nRating:%.2f\nOnline Status:%s"%( friends[friend_index]['Name'],friends[friend_index]['Age'],
+
+    while True:
+        friend_index = int(raw_input()) - 1
+        if 0 <= friend_index < count:
+            print "**Friend's Detail**"
+            print ("Name:%s\nAge:%d\nRating:%.2f\nOnline Status:%s"%( friends[friend_index]['Name'],friends[friend_index]['Age'],
                                                                     friends[friend_index]['Rating'],
                                                                     friends[friend_index]['online_status']))
-    return friend_index
+            break
+        else:
+            print colored("You have no such friend. Select from the above mentioned friend",'yellow')
 
+    return friend_index
 
