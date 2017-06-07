@@ -1,4 +1,4 @@
-from spy_details import spy_information
+from spy_details import spy_information_class
 from spy_status import add_status
 from spy_friend import add_friend,select_friend
 from spy_message import send_message,read_message
@@ -6,9 +6,9 @@ from old_spy_message import read_old_mess
 from termcolor import colored
 
 
-def spy_chat(name,age,rating,online_status):
+def spy_chat():
 #Diplaying spy's information:
-    print ("\nSpy_name:%s \nAge:%d \nRating:%d \nonline_status:%s " % (name,age,rating,online_status))
+    print colored("\nSpy_name:%s \nAge:%d \nRating:%.2f \nonline_status:%s " % (spy.name,spy.age,spy.rating,spy.online_status),'green')
     show_menu = True
 
     while show_menu == True:
@@ -21,7 +21,7 @@ def spy_chat(name,age,rating,online_status):
             current_status_message = add_status(current_status_message)
             print ("\n--Your current_status_message is--\n")+colored("%s"%(current_status_message),'green')
         elif menu_choice == 2:
-            add_friend(rating)
+            add_friend(spy.rating)
         elif menu_choice == 3:
             print "Select a friend whoes detail you want to view"
             select_friend()
@@ -43,7 +43,8 @@ warn = 0
 while True:
     choice = int(raw_input("Press\n 1. to continue as default user or \n 2. to create new user\n"))
     if choice == 1:
-        spy_chat(spy_information['Name'],spy_information['Age'],spy_information['Rating'],spy_information['online_status'])
+        spy = spy_information_class('Varun Tyagi',26,8.6,True)
+        spy_chat()
         break
     elif choice == 2:
         name = raw_input("Welcome to spy chat, you must tell me your spy name first: \t")
@@ -67,8 +68,10 @@ while True:
                 rate = float(raw_input("1.your Spy ratings :\t"))
                 online_status = bool(raw_input("2.your online_status(True/False) :\t"))
 
+#Storing Spy Details
+                spy = spy_information_class(name,age,rate,online_status)
 #Display Spy Details of new User
-                spy_chat(name,age,rate,online_status)
+                spy_chat()
             else:
                 print colored("Sorry you are not appropriate to be a spy",'green')
         break

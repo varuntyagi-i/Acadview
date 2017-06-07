@@ -1,11 +1,10 @@
 
-
-spy_information = {
-                    'Name':"Varun Tyagi",
-                    'Age' : 19,
-                    'Rating' : 9.6,
-                    'online_status':True
-                    }
+class spy_information_class:
+    def __init__(self,name,age,rating,online_status):
+        self.name = name
+        self.age = age
+        self.rating = rating
+        self.online_status = online_status
 
 status_messages = ["gd nyt","gd morning"]
 
