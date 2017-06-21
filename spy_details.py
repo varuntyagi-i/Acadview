@@ -1,13 +1,35 @@
 
 class spy_information_class:
-    def __init__(self,name,age,rating,online_status):
+    def spy_info(self,name,age,rating,online_status,status_messages):
         self.name = name
         self.age = age
         self.rating = rating
         self.online_status = online_status
+        self.status_messages = status_messages
+info = spy_information_class()
+#status_messages = ["gd nyt","gd morning"]
 
-status_messages = ["gd nyt","gd morning"]
 
+class new_chats:
+    def __init__(self,message,time,sent_by_me):
+        self.message = message;
+        self.time=time;
+        self.sent_by_me=sent_by_me;
+
+
+class add_friends:
+    def __init__(self,name,age,rating,online_status):
+        self.name = name;
+        self.age = age;
+        self.rating =rating;
+        self.online_status = online_status;
+        self.chat=[]
+
+friend1=add_friends("Anubhav",45,9.9,True)
+friend2=add_friends("Rahul",23,8.3,True)
+
+friend_list = [friend1,friend2]
+"""        
 friends = [  {'Name':"Anubhav",
                     'Age' : 45,
                     'Rating' : 9.9,
@@ -23,3 +45,4 @@ friends = [  {'Name':"Anubhav",
              }
 
           ]
+"""
