@@ -8,7 +8,7 @@ from termcolor import colored
 def send_message():
     print "Select a friend whom you want to send the message:"
     friend_choice = select_friend()
-    original_image = raw_input("\nWhat is the name of the image?(D:/image1.jpg)")
+    original_image = raw_input("\nWhat is the path of the image?(D:/image1.jpg)")
     output_path = 'D:/image2.jpg'
     text = raw_input("What do you want to say?")
     Steganography.encode(original_image, output_path, text)
@@ -28,7 +28,7 @@ def send_message():
 def read_message():
     print "Sender's name:"
     sender = select_friend()
-    output_path = raw_input("\nWhat is the name of the file?(D:/image2.jpg)")
+    output_path = raw_input("\nWhat is the path of the file?(D:/image2.jpg)")
     secret_text = Steganography.decode(output_path)
     if secret_text == "":
         print colored("There is no secret message","red")
@@ -52,5 +52,5 @@ def read_message():
         sum = len(ele.message.split( )) + sum
     average = sum/count
 #if a spy is speaking too much it will no longer remain spy's friend
-    if average >=100:
+    if average >= 100:
         friend_list.pop(sender)

@@ -11,6 +11,7 @@ def add_friend(rating):
 
         new_friend.age = int(raw_input("Age?"))
         new_friend.rating = float(raw_input("Spy rating?"))
+        new_friend.online_status = bool(raw_input("Online_Satus(True/False): "))
         if len(new_friend.name) > 0 and new_friend.age > 12 and new_friend.rating >= rating:
             friend_list.append(new_friend)
             print "spy\'s friend added"

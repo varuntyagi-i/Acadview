@@ -13,8 +13,8 @@ info = spy_information_class()
 class new_chats:
     def __init__(self,message,time,sent_by_me):
         self.message = message;
-        self.time=time;
-        self.sent_by_me=sent_by_me;
+        self.time = time;
+        self.sent_by_me = sent_by_me;
 
 
 class add_friends:
@@ -25,10 +25,12 @@ class add_friends:
         self.online_status = online_status;
         self.chat=[]
 
-friend1=add_friends("Anubhav",45,9.9,True)
+
 friend2=add_friends("Rahul",23,8.3,True)
 
-friend_list = [friend1,friend2]
+friend_list = []
+friend_list.append(add_friends("Anubhav",45,9.9,True))
+friend_list.append(add_friends("Rahul",23,8.3,True))
 """        
 friends = [  {'Name':"Anubhav",
                     'Age' : 45,
